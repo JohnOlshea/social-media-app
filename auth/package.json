@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/**/*.ts",
-    "prettier": "prettier --write ./src/**/*.ts",
-    "prettier:fix": "prettier --write .",
+    "prettier": "prettier --check ./src/**/*.ts",
+    "prettier:fix": "prettier --write ./src/**/*.ts",
     "start": "NODE_ENV=production ts-node src/index.ts",
     "start:dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -38,8 +38,8 @@
     "ts-jest": "26.5.0"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": [
-      "eslint .", "prettier --write .", "git add"
+    "src/**/*.ts": [
+      "npm run prettier", "npm run lint", "git add"
     ]
   },
   "husky": {
