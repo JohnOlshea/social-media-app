@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 
+export const SIGNUP_ROUTE = '/api/auth/signup';
 const signupRouter = express.Router();
 
 signupRouter.post(
-  '/api/auth/signup',
+  SIGNUP_ROUTE,
   [
     body('email').isEmail().withMessage('Email must be in a valid format'),
     body('password')
@@ -25,7 +26,7 @@ signupRouter.post(
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.status(422).send({ errors: errors.array() });
+      res.status(422).send({});
     }
 
     res.send({});
