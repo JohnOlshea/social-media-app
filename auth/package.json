@@ -33,7 +33,6 @@
     "@types/supertest": "^2.0.10",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
-    "eslint-config-airbnb-typescript-prettier": "^4.1.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
