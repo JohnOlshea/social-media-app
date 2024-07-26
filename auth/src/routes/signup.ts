@@ -7,11 +7,15 @@ const signupRouter = express.Router();
 signupRouter.post(
   SIGNUP_ROUTE,
   [
-    body('email').isEmail().withMessage('Email must be in a valid format'),
+    body('email')
+      .isEmail()
+      .withMessage('Email must be in a valid format')
+      .normalizeEmail(),
     body('password')
       .trim()
       .isLength({ min: 8, max: 32 })
       .withMessage('Password must be between 8 and 32 characters'),
+
     body('password')
       .matches(/^(.*[a-z].*)$/)
       .withMessage('Password must contain at least one lowercase letter'),
@@ -21,6 +25,7 @@ signupRouter.post(
     body('password')
       .matches(/^(.*\d.*)$/)
       .withMessage('Password must contain at least one number'),
+    body('password').escape(),
   ],
   (req: Request, res: Response) => {
     const errors = validationResult(req);
@@ -29,7 +34,15 @@ signupRouter.post(
       res.status(422).send({});
     }
 
-    res.send({});
+    if (/.+@[A-Z]/g.test(req.body.email)) {
+      res.sendStatus(422);
+    }
+
+    if (/[><'"/]/g.test(req.body.password)) {
+      res.sendStatus(422);
+    }
+
+    res.status(200).send({ email: req.body.email });
   }
 );
 
