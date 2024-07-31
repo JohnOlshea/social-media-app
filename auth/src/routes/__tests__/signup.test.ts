@@ -147,6 +147,7 @@ describe('tests saving the signed up user to the database', () => {
 
   it('does not allow saving a user with a duplicate email', async () => {
     await request(app).post(SIGNUP_ROUTE).send(validUserInfo).expect(201);
+
     await request(app).post(SIGNUP_ROUTE).send(validUserInfo).expect(422);
   });
 });

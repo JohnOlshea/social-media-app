@@ -18,6 +18,16 @@ const userSchema = new mongoose.Schema<UserDocument, UserModel>({
   },
 });
 
+userSchema.pre('save', async function preSaveFunction(this, next) {
+  const existingUser = await mongoose.models.User.findOne({
+    email: this.email,
+  });
+  if (existingUser) {
+    throw new Error('email is already in the database');
+  }
+  next();
+});
+
 const User = mongoose.model<UserDocument, UserModel>('User', userSchema);
 
 export default User;
