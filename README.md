@@ -52,8 +52,3 @@ The application is containerized using Docker and deployed to a Kubernetes clust
 * Docker
 * Kubernetes (optional for deployment)
 * MongoDB
-
-**Installation:**
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/JohnOlshea/social-media-app.git](https://github.com/JohnOlshea/social-media-app.git)
